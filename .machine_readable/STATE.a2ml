@@ -1,0 +1,43 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Copyright (c) {{CURRENT_YEAR}} {{AUTHOR}} ({{OWNER}}) <{{AUTHOR_EMAIL}}>
+#
+# STATE.a2ml — Project state checkpoint
+# Replace {{PROJECT_NAME}} and customize sections below.
+
+[metadata]
+project = "{{PROJECT_NAME}}"
+version = "0.1.0"
+last-updated = "{{CURRENT_DATE}}"
+status = "active"  # active | paused | archived
+
+[project-context]
+name = "{{PROJECT_NAME}}"
+purpose = "{{PROJECT_PURPOSE}}"
+completion-percentage = 0
+
+[position]
+phase = "design"           # design | implementation | testing | maintenance | archived
+maturity = "experimental"  # experimental | alpha | beta | production | lts
+
+[route-to-mvp]
+milestones = [
+  { name = "Initial setup", completion = 100 },
+  { name = "Core implementation", completion = 0 },
+  { name = "Testing", completion = 0 },
+  { name = "Documentation", completion = 0 },
+]
+
+[blockers-and-issues]
+# Add blockers here as they arise
+# - "Waiting on upstream fix for X"
+
+[critical-next-actions]
+actions = [
+  "Customize template placeholders",
+  "Implement core functionality",
+  "Add tests",
+]
+
+[ecosystem]
+part-of = ["RSR Framework"]
+depends-on = []

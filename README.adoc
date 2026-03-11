@@ -1,0 +1,65 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
+= InvestigativeJournalist.jl
+:toc: macro
+:toclevels: 2
+:icons: font
+
+image:https://img.shields.io/badge/Project-Topology-9558B2[Topology,link="TOPOLOGY.md"]
+image:https://img.shields.io/badge/Completion-80%25-green[80%,link="TOPOLOGY.md"]
+image:https://img.shields.io/badge/License-PMPL--1.0-blue.svg[License: PMPL-1.0,link="https://github.com/hyperpolymath/palimpsest-license"]
+image:https://img.shields.io/badge/Julia-1.10+-9558B2?logo=julia[Julia,link="https://julialang.org/"]
+
+*Structured Evidence for High-Stakes Reporting*
+
+_Turn messy source material into audit-ready investigative artifacts._
+
+toc::[]
+
+== Overview
+
+InvestigativeJournalist.jl is a Julia toolkit for managing the end-to-end investigative reporting workflow. It provides high-integrity structures for ingesting diverse sources, extracting verifiable claims, and building a corroboration matrix that minimizes editorial and legal risk.
+
+== Core Capabilities
+
+* **Multi-Source Ingestion**: Ingest documents, web snapshots, and interview notes with automatic hashing and deduplication.
+* **Claim Extraction**: Extract discrete claims and link them to entities (people, orgs, places).
+* **Corroboration Matrix**: Quantify confidence levels across claims and multiple supporting sources.
+* **Auditable Provenance**: Every claim in your final draft traces back to a cryptographically hashed source document.
+* **Timeline & Network Analysis**: Visualize actors and events to detect gaps or contradictions in narratives.
+
+== Quick Start
+
+[source,julia]
+----
+using InvestigativeJournalist
+
+# Ingest a source document
+doc = ingest_source("docs/leaked_contract.pdf")
+
+# Extract claims and link to entities
+claims = extract_claims(doc)
+link_entities!(claims)
+
+# Build a corroboration matrix
+matrix = corroborate(claims, all_docs())
+
+# Generate a publication-ready evidence pack
+pack = generate_publication_pack(story_draft)
+----
+
+== Suggested Tech Stack
+
+* **Data**: `DataFrames.jl`, `Arrow.jl`, `JSON3.jl`
+* **Persistence**: `SQLite.jl` or `DuckDB.jl`
+* **Text Analysis**: `TextAnalysis.jl`
+* **Visualization**: `Makie.jl`
+
+== Safety & Governance
+
+* **Source Protection**: Support for encrypted fields and redacted exports for sensitive whistleblowers.
+* **Audit Trail**: Immutable logs for every change in confidence scores or claim text.
+* **Zero-Unreferenced Policy**: Final publication packages prevent inclusion of any claim without a verified evidence link.
+
+== License
+
+Palimpsest-MPL-1.0 License - see link:LICENSE[LICENSE] for details.

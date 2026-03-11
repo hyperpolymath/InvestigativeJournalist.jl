@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Default owner for everything
+* @{{OWNER}}
+
+# Security-sensitive files require explicit review
+SECURITY.md @{{OWNER}}
+.github/workflows/ @{{OWNER}}
+.machine_readable/ @{{OWNER}}

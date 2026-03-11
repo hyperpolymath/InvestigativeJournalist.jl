@@ -1,0 +1,56 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
+= InvestigativeJournalist.jl Roadmap
+
+== v0.1.0 - Core Ingestion & Claims (Current)
+* [x] Basic source ingestion (PDF/Text) with SHA-256 hashing.
+* [x] Core data models (`SourceDoc`, `Claim`, `EvidenceLink`).
+* [x] Initial claim extraction scaffolding.
+* [x] Markdown export for evidence tables.
+
+== v0.2.0 - Corroboration & Entities
+* [ ] Entity recognition and linking (NER integration).
+* [ ] Corroboration matrix generation (`claim` x `source`).
+* [ ] Conflict detection (flagging contradictory sources for the same claim).
+* [ ] Timeline builder from extracted event metadata.
+
+== v0.3.0 - FOIA & Project Management
+* [ ] FOIA/Public-record request tracking subsystem.
+* [ ] Automated "due date" alerts for legal requests.
+* [ ] Story draft integration with "Fact-Check" annotation engine.
+
+== v1.0.0 - Production Readiness
+* [ ] Publication packager (self-contained evidence bundles).
+* [ ] Multi-user SQLite/DuckDB backend for newsroom collaboration.
+* [ ] Encrypted "Source Vault" for high-risk documents.
+
+== v1.1.0 - High Intelligence (GIJN 2025 Inspired)
+* [x] **Network Forensics**: Specialized graph for shell company tracing.
+* [x] **Media Integrity**: AI-artifact detection and image integrity analysis.
+* [ ] **Video Intelligence**: Automated summarization of hearings.
+* [ ] **Financial Anomaly Detection**: Integrated 'Violation Tracker' queries.
+
+== v1.2.0 - Statistical Interop & Narrative
+* [x] **Legacy Stat Bridge**: Native `RCall` and `PyCall` workflows.
+* [x] **Story Architect**: Narrative templates for Longform, News Bulletin, and Social Threads.
+* [x] **Fraud Analytics**: Benford's Law and Outlier detection implemented.
+* [ ] **Wolfram Integration**: Knowledgebase queries for factual verification.
+
+== v1.3.0 - Veridical & Multimodal (The VeriSim Update)
+* [ ] **VeriSimDB Integration**: Multi-modal storage (Graph, Vector, Document) for investigations.
+* [ ] **VQL Support**: Cross-modal querying using Veridical Query Language.
+* [ ] **Signal Isolation**: Advanced FFT/Wavelet tools for cleaning audio/image leaks.
+* [ ] **Drift Detection**: Automatically detect when investigative data diverges from the "Simulacrum" (official reality).
+
+== Future Horizons (v2.0+)
+
+=== AI-Augmented Fact-Checking
+* [ ] **LLM-Driven Claim Verification**: Integrate with `Axiom.jl` to use verified neural models for cross-referencing claims against internal knowledge bases.
+* [ ] **Automated Bias Detection**: Algorithmic analysis of source material to detect patterns of linguistic bias or coordinated influence.
+
+=== Forensic & OSINT Extensions
+* [ ] **EXIF & Metadata Extraction**: Automatically extract and link geolocation data from ingested images/video.
+* [ ] **Blockchain Provenance**: Publish evidence hashes to an immutable ledger to prove document existence at a specific time (notary-as-a-service).
+
+=== Secure Collaborative Research
+* [ ] **Zero-Knowledge Evidence Sharing**: Allow multiple newsrooms to verify they have the same source document without revealing the document content.
+* [ ] **Differential Privacy for Whistleblowers**: Apply ZeroProb.jl techniques to ensure whistleblower identities remain topologically hidden in large datasets.

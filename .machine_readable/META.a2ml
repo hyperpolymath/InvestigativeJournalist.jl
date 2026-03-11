@@ -1,0 +1,28 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Copyright (c) {{CURRENT_YEAR}} {{AUTHOR}} ({{OWNER}}) <{{AUTHOR_EMAIL}}>
+#
+# META.a2ml — Project meta-level information
+# Architecture decisions, design rationale, governance.
+
+[metadata]
+version = "0.1.0"
+last-updated = "{{CURRENT_DATE}}"
+
+[project-info]
+type = "{{PROJECT_TYPE}}"  # library | binary | monorepo | service | website
+languages = []             # e.g. ["rust", "zig", "idris2"]
+license = "PMPL-1.0-or-later"
+author = "{{AUTHOR}} ({{OWNER}})"
+
+[architecture-decisions]
+# ADR format: status = proposed | accepted | deprecated | superseded | rejected
+# - { id = "ADR-001", title = "Use Zig for FFI", status = "accepted", date = "2026-02-14" }
+
+[development-practices]
+build-tool = "just"
+container-runtime = "podman"
+ci-platform = "github-actions"
+package-manager = "guix"  # guix | nix | cargo | mix
+
+[design-rationale]
+# Key design decisions and their reasoning
