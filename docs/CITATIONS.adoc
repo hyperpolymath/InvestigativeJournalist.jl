@@ -1,34 +1,34 @@
-= {{PROJECT_NAME}} - Citation Guide
+= InvestigativeJournalist.jl - Citation Guide
 :toc:
 
 == BibTeX
 
 [source,bibtex]
 ----
-@software{{{PROJECT_NAME}}_{{CURRENT_YEAR}},
-  author = {{{AUTHOR_LAST}}, {{AUTHOR_FIRST}}},
-  title = {{{PROJECT_NAME}}},
-  year = {{{CURRENT_YEAR}}},
-  url = {https://github.com/{{OWNER}}/{{PROJECT_NAME}}},
-  license = {PMPL-1.0-or-later}
+@software{investigativejournalist_jl_2026,
+  author = {Jewell, Jonathan D.A.},
+  title = {InvestigativeJournalist.jl},
+  year = {2026},
+  url = {https://github.com/hyperpolymath/InvestigativeJournalist.jl},
+  license = {MPL-2.0}
 }
 ----
 
 == Harvard Style
 
-{{AUTHOR_LAST}}, {{AUTHOR_INITIALS}} ({{CURRENT_YEAR}}) _{{PROJECT_NAME}}_ [Computer software]. Available at: https://github.com/{{OWNER}}/{{PROJECT_NAME}}
+Jewell, J.D.A. (2026) _InvestigativeJournalist.jl_ [Computer software]. Available at: https://github.com/hyperpolymath/InvestigativeJournalist.jl
 
 == OSCOLA
 
-{{AUTHOR}}, '{{PROJECT_NAME}}' ({{CURRENT_YEAR}}) <https://github.com/{{OWNER}}/{{PROJECT_NAME}}>
+Jonathan D.A. Jewell, 'InvestigativeJournalist.jl' (2026) <https://github.com/hyperpolymath/InvestigativeJournalist.jl>
 
 == MLA
 
-{{AUTHOR_LAST}}, {{AUTHOR_FIRST}} "{{PROJECT_NAME}}." {{CURRENT_YEAR}}, github.com/{{OWNER}}/{{PROJECT_NAME}}.
+Jewell, Jonathan D.A. "InvestigativeJournalist.jl." 2026, github.com/hyperpolymath/InvestigativeJournalist.jl.
 
 == APA 7
 
-{{AUTHOR_LAST}}, {{AUTHOR_INITIALS}} ({{CURRENT_YEAR}}). _{{PROJECT_NAME}}_ [Computer software]. GitHub. https://github.com/{{OWNER}}/{{PROJECT_NAME}}
+Jewell, J. D. A. (2026). _InvestigativeJournalist.jl_ [Computer software]. GitHub. https://github.com/hyperpolymath/InvestigativeJournalist.jl
 
 == See Also
 
