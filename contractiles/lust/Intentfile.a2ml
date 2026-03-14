@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Intentfile (A2ML Canonical)
+
+@abstract:
+Declared future intent for InvestigativeJournalist.jl.
+@end
+
+@requires:
+- section: Features
+- section: Quality
+@end
+
+## Features
+
+### initial-release
+- description: Ship v1.0.0
+- status: in-progress
+- priority: critical
+
+## Quality
+
+### test-coverage
+- description: Achieve meaningful test coverage
+- status: declared
+- priority: medium

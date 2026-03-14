@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Mustfile (A2ML Canonical)
+
+@abstract:
+Physical State contract for InvestigativeJournalist.jl.
+Declares what must be true about this project's files and configuration.
+@end
+
+@requires:
+- section: Checks
+@end
+
+## Checks
+
+### license-present
+- description: LICENSE file must exist
+- run: test -f LICENSE
+- severity: critical
+
+### readme-present
+- description: README must exist
+- run: test -f README.adoc || test -f README.md
+- severity: critical
+
+### spdx-headers
+- description: Source files should have SPDX license headers
+- run: find . -name '*.rs' -o -name '*.res' -o -name '*.gleam' | head -20 | xargs -r grep -L 'SPDX-License-Identifier' | wc -l | grep -q '^0$'
+- severity: warning
+
+### no-banned-files
+- description: No Dockerfiles or Makefiles
+- run: test ! -f Dockerfile && test ! -f Makefile
+- severity: critical
