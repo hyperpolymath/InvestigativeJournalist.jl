@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
-# Copyright (c) {{CURRENT_YEAR}} {{AUTHOR}} ({{OWNER}}) <{{AUTHOR_EMAIL}}>
+# Copyright (c) {{CURRENT_YEAR}} {{AUTHOR}} (hyperpolymath) <{{AUTHOR_EMAIL}}>
 #
 # Containerfile for {{PROJECT_NAME}}
 # Build: podman build -t {{project}}:latest -f Containerfile .

@@ -1,5 +1,5 @@
 ;; SPDX-License-Identifier: PMPL-1.0-or-later
-;; Copyright (c) {{CURRENT_YEAR}} {{AUTHOR}} ({{OWNER}}) <{{AUTHOR_EMAIL}}>
+;; Copyright (c) {{CURRENT_YEAR}} {{AUTHOR}} (hyperpolymath) <{{AUTHOR_EMAIL}}>
 ;;
 ;; Guix channel definition for {{PROJECT_NAME}}
 ;;
@@ -7,14 +7,14 @@
 ;;
 ;;   (channel
 ;;     (name '{{PROJECT_NAME}})
-;;     (url "https://github.com/{{OWNER}}/{{PROJECT_NAME}}")
+;;     (url "https://github.com/hyperpolymath/{{PROJECT_NAME}}")
 ;;     (branch "main"))
 ;;
 ;; Then: guix pull
 
 (channel
   (version 0)
-  (url "https://github.com/{{OWNER}}/{{PROJECT_NAME}}")
+  (url "https://github.com/hyperpolymath/{{PROJECT_NAME}}")
   (dependencies
    (channel
      (name 'guix)

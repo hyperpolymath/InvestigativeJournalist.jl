@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
 # Default owner for everything
-* @{{OWNER}}
+* @hyperpolymath
 
 # Security-sensitive files require explicit review
-SECURITY.md @{{OWNER}}
-.github/workflows/ @{{OWNER}}
-.machine_readable/ @{{OWNER}}
+SECURITY.md @hyperpolymath
+.github/workflows/ @hyperpolymath
+.machine_readable/ @hyperpolymath

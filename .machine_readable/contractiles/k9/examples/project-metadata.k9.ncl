@@ -30,7 +30,7 @@ K9!
     description = "A project following Rhodium Standard Repositories",
 
     repository = {
-      url = "https://github.com/{{OWNER}}/my-project",
+      url = "https://github.com/hyperpolymath/my-project",
       type = "git",
     },
 
@@ -45,7 +45,7 @@ K9!
     keywords = [
       "rhodium-standard",
       "rsr",
-      "{{OWNER}}",
+      "hyperpolymath",
     ],
   },
 

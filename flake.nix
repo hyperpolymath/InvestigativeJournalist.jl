@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
-# Copyright (c) {{CURRENT_YEAR}} {{AUTHOR}} ({{OWNER}}) <{{AUTHOR_EMAIL}}>
+# Copyright (c) {{CURRENT_YEAR}} {{AUTHOR}} (hyperpolymath) <{{AUTHOR_EMAIL}}>
 #
 # Nix flake for {{PROJECT_NAME}}
 #
@@ -159,7 +159,7 @@
 
           meta = with pkgs.lib; {
             description = "{{PROJECT_DESCRIPTION}}";
-            homepage = "https://github.com/{{OWNER}}/{{PROJECT_NAME}}";
+            homepage = "https://github.com/hyperpolymath/{{PROJECT_NAME}}";
             license = licenses.mpl20; # PMPL-1.0-or-later extends MPL-2.0
             maintainers = [];
             platforms = [ "x86_64-linux" "aarch64-linux" ];

@@ -2,7 +2,7 @@
 # humanstxt.org
 
 /* TEAM */
-Maintainer: {{AUTHOR}} ({{OWNER}})
+Maintainer: {{AUTHOR}} (hyperpolymath)
 Contact: {{AUTHOR_EMAIL}}
 From: United Kingdom
 
