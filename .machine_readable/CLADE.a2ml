@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Clade declaration — part of the gv-clade-index registry
+# See: https://github.com/hyperpolymath/gv-clade-index
+
+[identity]
+uuid = "0913d39a-bde3-50d0-a124-4c4e17c347d9"
+primary-forge = "github"
+primary-owner = "hyperpolymath"
+canonical-name = "InvestigativeJournalist.jl"
+prefixed-name = "ap-InvestigativeJournalist.jl"
+
+[clade]
+primary = "ap"
+secondary = []
+assigned = "2026-03-16"
+rationale = ""
+
+[forges]
+github = "hyperpolymath/InvestigativeJournalist.jl"
+gitlab = "hyperpolymath/InvestigativeJournalist.jl"
+bitbucket = "hyperpolymath/InvestigativeJournalist.jl"
+
+[lineage]
+type = "standalone"
+parent = "Julia package — investigative journalism tools"
+born = "2026-03-16"
