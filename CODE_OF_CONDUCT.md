@@ -4,7 +4,7 @@
 ============================================================================
 TEMPLATE INSTRUCTIONS (delete this block before publishing)
 ============================================================================
-Replace all {{PLACEHOLDER}} values:
+Replace all InvestigativeJournalist.jl values:
   InvestigativeJournalist.Jl     - Your project name
   hyperpolymath            - GitHub/GitLab username or org
   InvestigativeJournalist.jl             - Repository name
