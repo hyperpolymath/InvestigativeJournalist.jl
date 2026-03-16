@@ -83,8 +83,8 @@ This repo contains:
 ✅ Understand canonical location: `.machine_readable/` (state, bots, contractiles)
 ✅ Know the invariants (no state file duplication, etc.)
 ✅ Check for MCP enforcement (if applicable)
-✅ Read `.machine_readable/STATE.a2ml` for current status
-✅ Read `.machine_readable/AGENTIC.a2ml` for interaction patterns
+✅ Read `.machine_readable/6a2/STATE.a2ml` for current status
+✅ Read `.machine_readable/6a2/AGENTIC.a2ml` for interaction patterns
 
 ## LIFECYCLE HOOKS
 
@@ -96,7 +96,7 @@ When starting a new session:
 2. Log session start (optional but recommended)
    - Format: `[YYYY-MM-DD HH:MM:SS] Session started: [agent-name]`
    - Location: `.machine_readable/session-log.txt`
-3. Read `.machine_readable/STATE.a2ml`
+3. Read `.machine_readable/6a2/STATE.a2ml`
 4. Check for blockers
 5. State understanding of canonical locations
 
@@ -104,7 +104,7 @@ When starting a new session:
 
 When ending a session:
 
-1. Update `.machine_readable/STATE.a2ml` if changes made
+1. Update `.machine_readable/6a2/STATE.a2ml` if changes made
 2. Log session end (optional but recommended)
    - Format: `[YYYY-MM-DD HH:MM:SS] Session ended: [summary]`
    - Location: `.machine_readable/session-log.txt`
