@@ -11,7 +11,8 @@ on:
     tags:
       - 'v*'
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   build:
