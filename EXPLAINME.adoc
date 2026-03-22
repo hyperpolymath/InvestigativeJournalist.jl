@@ -1,0 +1,44 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
+= InvestigativeJournalist.jl — Show Me The Receipts
+:toc:
+:icons: font
+
+The README makes claims. This file backs them up.
+
+[quote, README]
+____
+InvestigativeJournalist.jl is a Julia toolkit for managing the end-to-end investigative reporting workflow. It provides high-integrity structures for ingesting diverse sources, extracting verifiable claims, and building a corroboration matrix that minimizes editorial and legal risk.
+____
+
+== Technology Choices
+
+[cols="1,2"]
+|===
+| Technology | Learn More
+
+| **Zig** | https://ziglang.org
+| **Julia** | https://julialang.org
+| **Idris2 ABI** | https://www.idris-lang.org
+|===
+
+== Dogfooded Across The Account
+
+Uses the hyperpolymath ABI/FFI standard (Idris2 + Zig). Same pattern used across
+https://github.com/hyperpolymath/proven[proven],
+https://github.com/hyperpolymath/burble[burble], and
+https://github.com/hyperpolymath/gossamer[gossamer].
+
+== File Map
+
+[cols="1,2"]
+|===
+| Path | What's There
+
+| `src/` | Source code
+| `ffi/` | Foreign function interface
+| `test(s)/` | Test suite
+|===
+
+== Questions?
+
+Open an issue or reach out directly — happy to explain anything in more detail.
