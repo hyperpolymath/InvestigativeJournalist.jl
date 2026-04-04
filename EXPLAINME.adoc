@@ -1,42 +1,237 @@
 // SPDX-License-Identifier: PMPL-1.0-or-later
+// Copyright (c) 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 = InvestigativeJournalist.jl — Show Me The Receipts
 :toc:
+:toclevels: 3
 :icons: font
 
-The README makes claims. This file backs them up.
+The README makes claims. This file backs them up with specific code locations,
+honest caveats, and enough detail for an external reviewer to orient themselves.
 
-[quote, README]
-____
-InvestigativeJournalist.jl is a Julia toolkit for managing the end-to-end investigative reporting workflow. It provides high-integrity structures for ingesting diverse sources, extracting verifiable claims, and building a corroboration matrix that minimizes editorial and legal risk.
-____
+== README Claims — Verified
 
-== Technology Choices
+=== Claim 1: "Covers the full investigative pipeline from document ingestion through publication"
 
-[cols="1,2"]
-|===
-| Technology | Learn More
+*True.* `src/InvestigativeJournalist.jl` includes 18 sub-modules spanning the
+complete workflow:
 
-| **Zig** | https://ziglang.org
-| **Julia** | https://julialang.org
-| **Idris2 ABI** | https://www.idris-lang.org
-|===
+. *Ingestion:* `ingest.jl` (`ingest_source`), `parsers.jl` (`parse_contract`,
+  `parse_job_description`, `compare_policies`)
+. *Analysis:* `claims.jl` (`extract_claim`), `corroboration.jl`
+  (`link_evidence`, `corroboration_report`), `analytics/statistics.jl`
+  (`benfords_law_check`, `find_outliers`)
+. *Intelligence:* `intelligence/network.jl` (`InvestigativeGraph`,
+  `add_connection!`, `find_shortest_path`), `intelligence/string_board.jl`
+  (`CrazyWall`, `add_photo!`, `add_string!`), `intelligence/forensics.jl`
+  (`verify_image_integrity`, `detect_ai_artifacts`), `intelligence/media_pro.jl`
+  (`isolate_signal`, `denoise_audio`, `enhance_clarity`), `intelligence/systemic.jl`
+  (`model_instability_context`, `test_causal_pathway`, `assess_black_swan`)
+. *Security:* `shield/unlock.jl` (`unlock_pdf`, `force_extract_text`),
+  `shield/secure_transfer.jl` (`generate_drop_token`, `sign_evidence_pack`)
+. *Publication:* `storytelling/templates.jl` (`build_story_structure`,
+  `Longform`, `NewsBulletin`, `Thread`), `storytelling/timelines.jl`
+  (`TimelineBranch`, `TimelineEvent`, `add_event!`, `create_branch`)
+. *Interoperability:* `interop/bridge.jl` (`run_r_script`, `export_to_stata`,
+  `export_to_spss`), `storage/verisim_bridge.jl` (`register_investigation_hexad`,
+  `vql_query`)
+. *Audio:* `audio/production.jl` (`PodcastScript`, `add_segment!`,
+  `generate_show_notes`)
+
+*Caveat:* The package is at v0.1.0. Several sub-modules (`shield/unlock.jl`,
+`audio/production.jl`) rely on external system tools (pdftotext, ffmpeg) being
+present in PATH; they are not pure Julia implementations.
+
+=== Claim 2: "Network intelligence graphs and 'crazy wall' string boards"
+
+*True.* `src/intelligence/network.jl` exports `InvestigativeGraph` (backed by
+`MetaGraphsNext.jl`), `add_connection!`, and `find_shortest_path`. The graph
+supports named entities and typed relationship edges. `src/intelligence/string_board.jl`
+exports `CrazyWall` (a mutable struct with photo, string, and note collections)
+with `add_photo!` and `add_string!` operations — a programmatic analogue of
+the physical investigation corkboard.
+
+Test coverage verifies: entity creation, connection addition, shortest-path
+traversal, and CrazyWall item accumulation.
+
+=== Claim 3: "Secure evidence transfer with cryptographic signing"
+
+*True.* `src/shield/secure_transfer.jl` exports `generate_drop_token` and
+`sign_evidence_pack`. Both use Julia's `SHA.jl` standard library for
+cryptographic hashing and generate self-describing tokens suitable for
+secure evidence hand-off. `sign_evidence_pack` produces a detached signature
+over a collected evidence bundle.
+
+*Caveat:* The signing scheme uses SHA-256 hashes, not asymmetric signatures
+(e.g., Ed25519). This provides integrity verification but not non-repudiation.
+Users requiring legal-grade signing should use GnuPG tooling externally.
+
+== How It Works
+
+`src/InvestigativeJournalist.jl` is a module aggregator: it includes 18
+sub-module files and re-exports from all 18 using-declarations. The sub-module
+architecture isolates concerns — callers needing only network intelligence can
+`using InvestigativeJournalist.NetworkIntelligence` without loading the full
+package.
+
+The primary data types are `SourceDoc`, `Claim`, `EvidenceLink`, `Entity`,
+`Event`, `FOIARequest`, and `StoryDraft` — all defined in `src/types.jl` and
+exported from the root module. A corroboration workflow proceeds:
+
+. Ingest source documents via `ingest_source` (returns `SourceDoc` with
+  SHA-256 fingerprint)
+. Extract claims via `extract_claim` (returns `Vector{Claim}`)
+. Link supporting evidence via `link_evidence` (attaches `EvidenceLink` to
+  claims)
+. Generate a corroboration matrix via `corroboration_report` (returns
+  DataFrame of claims with evidence counts and corroboration status)
+
+Network intelligence and forensic analysis run as parallel tracks, feeding
+the final `StoryDraft` via `build_story_structure`. VeriSimDB integration
+via `storage/verisim_bridge.jl` persists investigations to a structured
+queryable store.
+
+== Honest Caveats
+
+* The `detect_ai_artifacts` function in `intelligence/forensics.jl` performs
+  heuristic analysis; it is not a trained classifier and will produce
+  false positives on heavily compressed images.
+* `run_r_script` and `export_to_stata` in `interop/bridge.jl` spawn subprocesses
+  and require R and Stata to be installed; they are thin wrappers, not Julia
+  re-implementations.
+* The package has no built-in OCR; `ingest_source` on image PDFs calls an
+  external pdftotext subprocess via `shield/unlock.jl`.
+* VeriSimDB integration (`storage/verisim_bridge.jl`) requires a running
+  VeriSimDB instance; the bridge will fail gracefully if none is available.
 
 == Dogfooded Across The Account
 
-Uses the hyperpolymath ABI/FFI standard (Idris2 + Zig). Same pattern used across
-https://github.com/hyperpolymath/proven[proven],
-https://github.com/hyperpolymath/burble[burble], and
-https://github.com/hyperpolymath/gossamer[gossamer].
+[cols="2,3"]
+|===
+| Where | How InvestigativeJournalist is relevant
+
+| https://github.com/hyperpolymath/developer-ecosystem[developer-ecosystem]
+  `julia-ecosystem/`
+| InvestigativeJournalist is the most complex multi-module Julia package in
+  the account and serves as a reference for the sub-module include/using
+  aggregator pattern.
+
+| https://github.com/hyperpolymath/Causals.jl[Causals.jl]
+| IJ's `test_causal_pathway` in `intelligence/systemic.jl` delegates to
+  Causals.jl `assess_causality` (Bradford Hill) for evaluating causal claims
+  in investigative stories.
+
+| https://github.com/hyperpolymath/BowtieRisk.jl[BowtieRisk.jl]
+| IJ's `assess_black_swan` output can populate threat probability estimates
+  in a BowtieRisk model for editorial risk assessment.
+
+| https://github.com/hyperpolymath/verisimdb[verisimdb]
+| `storage/verisim_bridge.jl` implements `register_investigation_hexad` and
+  `vql_query` — a direct per-project VeriSimDB instance integration following
+  the mandatory VeriSimDB policy.
+
+| https://github.com/hyperpolymath/hypatia[hypatia]
+| Hypatia CI scans InvestigativeJournalist.jl for SPDX compliance and RSR
+  antipatterns on every push.
+|===
 
 == File Map
 
-[cols="1,2"]
+[cols="2,3"]
 |===
-| Path | What's There
+| Path | What is There
 
-| `src/` | Source code
-| `ffi/` | Foreign function interface
-| `test(s)/` | Test suite
+| `src/InvestigativeJournalist.jl`
+| Root module aggregator. Includes 18 sub-modules and re-exports 40+ public
+  names covering the full investigative pipeline.
+
+| `src/types.jl`
+| Core data types: `SourceDoc`, `Claim`, `EvidenceLink`, `Entity`, `Event`,
+  `FOIARequest`, `StoryDraft`. All other modules depend on these types.
+
+| `src/ingest.jl`
+| Document ingestion: `ingest_source` (returns `SourceDoc` with SHA-256
+  fingerprint, source type, and timestamp).
+
+| `src/claims.jl`
+| Claim extraction: `extract_claim` (returns `Vector{Claim}` from `SourceDoc`).
+
+| `src/corroboration.jl`
+| Evidence corroboration: `link_evidence`, `corroboration_report`.
+
+| `src/parsers.jl`
+| Structured document parsers: `parse_contract`, `parse_job_description`,
+  `compare_policies`.
+
+| `src/shield/unlock.jl`
+| PDF unlocking and text extraction: `unlock_pdf`, `force_extract_text`.
+  Shells out to pdftotext.
+
+| `src/shield/secure_transfer.jl`
+| Cryptographic evidence handling: `generate_drop_token`, `sign_evidence_pack`
+  (SHA-256 based).
+
+| `src/intelligence/network.jl`
+| Network graph intelligence: `InvestigativeGraph` (MetaGraphsNext backed),
+  `add_connection!`, `find_shortest_path`.
+
+| `src/intelligence/forensics.jl`
+| Media forensics: `verify_image_integrity`, `detect_ai_artifacts`.
+
+| `src/intelligence/string_board.jl`
+| CrazyWall corkboard: `CrazyWall`, `add_photo!`, `add_string!`.
+
+| `src/intelligence/systemic.jl`
+| Systemic analysis: `model_instability_context`, `test_causal_pathway`
+  (delegates to Causals.jl), `assess_black_swan`.
+
+| `src/intelligence/media_pro.jl`
+| Audio/media signal processing: `isolate_signal`, `denoise_audio`,
+  `enhance_clarity`.
+
+| `src/audio/production.jl`
+| Podcast production: `PodcastScript`, `add_segment!`, `generate_show_notes`.
+
+| `src/interop/bridge.jl`
+| Statistical software interoperability: `run_r_script`, `export_to_stata`,
+  `export_to_spss`.
+
+| `src/storytelling/templates.jl`
+| Story structure: `StoryTemplate`, `Longform`, `NewsBulletin`, `Thread`,
+  `build_story_structure`.
+
+| `src/storytelling/timelines.jl`
+| Branching timelines: `TimelineBranch`, `TimelineEvent`, `add_event!`,
+  `create_branch`.
+
+| `src/analytics/statistics.jl`
+| Data anomaly detection: `benfords_law_check`, `find_outliers`.
+
+| `src/storage/verisim_bridge.jl`
+| VeriSimDB integration: `register_investigation_hexad`, `vql_query`.
+
+| `test/runtests.jl`
+| Tests covering all major types and operations: SourceDoc construction,
+  Claim extraction, EvidenceLink chaining, corroboration report generation,
+  network graph traversal, CrazyWall operations, secure token generation,
+  story template construction, and timeline branching.
+
+| `benches/benchmarks.jl`
+| BenchmarkTools suite for `ingest_source`, `corroboration_report`, and
+  network graph shortest-path at varying graph sizes.
+
+| `Project.toml`
+| Name `InvestigativeJournalist`, v0.1.0, MPL-2.0; deps include `DataFrames`,
+  `JSON3`, `SQLite`, `Dates`, `SHA`, `HTTP`, `URIs`, `TextAnalysis`, `Images`,
+  `Graphs`, `MetaGraphsNext`, `Gumbo`, `Cascadia`.
+
+| `generated/`
+| Auto-generated content directory (story exports, evidence bundles).
+
+| `contractiles/`
+| Contractile interface definitions (RSR interoperability standard).
+
+| `stapeln.toml`
+| Stapeln container configuration for reproducible build environment.
 |===
 
 == Questions?
