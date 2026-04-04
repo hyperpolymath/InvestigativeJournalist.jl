@@ -486,3 +486,6 @@ using DataFrames
     end
 
 end # top-level testset
+
+include("e2e_test.jl")
+include("property_test.jl")
