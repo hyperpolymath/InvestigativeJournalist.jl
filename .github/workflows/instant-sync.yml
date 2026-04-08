@@ -31,3 +31,8 @@ jobs:
 
       - name: Confirm
         run: echo "::notice::Propagation triggered for ${{ github.event.repository.name }}"
+
+  - name: K9-SVC Validation
+    run: |
+      echo "K9-SVC validation"
+      [ -d .machine_readable/contractiles ] && echo "Contractiles present" || echo "No contractiles"
