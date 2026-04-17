@@ -19,9 +19,12 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-patch"]
+    # `open-pull-requests-limit: 0` suppresses routine version-update PRs
+    # while leaving Dependabot SECURITY PRs flowing. The previous
+    # `ignore: "*" patch` rule also silenced security PRs under GitHub\'s
+    # current Dependabot behaviour. See rsr-template-repo commit 78b050e
+    # and 007-lang/audits/audit-dependabot-automation-gap-2026-04-17.md.
+    open-pull-requests-limit: 0
 
   # Elixir/Mix
   - package-ecosystem: "mix"

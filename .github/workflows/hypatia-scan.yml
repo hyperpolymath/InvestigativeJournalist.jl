@@ -13,6 +13,9 @@ on:
 
 permissions:
   contents: read
+  # security-events: read lets the built-in GITHUB_TOKEN query this
+  # repo\'s own Dependabot alerts via the Hypatia DependabotAlerts rule.
+  security-events: read
 
 jobs:
   scan:
