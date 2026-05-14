@@ -35,5 +35,21 @@ jobs:
 
       - uses: julia-actions/cache@e33b4bfa0ea7cd9caedd7cb82b0e36956ef40285 # v2
 
+      - name: Install hyperpolymath Julia registry
+        shell: bash
+        run: |
+          # The hyperpolymath General registry lives at registries/General/
+          # inside hyperpolymath/julia-ecosystem (a meta-repo). Julia Pkg
+          # can't add a registry from a subdir directly, so clone the
+          # meta-repo and copy the registry into the depot.
+          mkdir -p ~/.julia/registries
+          if [ ! -f ~/.julia/registries/HyperpolymathGeneral/Registry.toml ]; then
+            git clone --depth=1 https://github.com/hyperpolymath/julia-ecosystem.git /tmp/julia-ecosystem
+            cp -r /tmp/julia-ecosystem/registries/General ~/.julia/registries/HyperpolymathGeneral
+          fi
+          # Ensure the upstream Julia General registry is also present
+          # (julia-actions/cache may have skipped it on a cold cache).
+          julia -e 'using Pkg; try Pkg.Registry.add("General") catch end'
+
       - name: Install, build, test
         run: julia --project=. -e 'using Pkg; Pkg.instantiate(); Pkg.build(); Pkg.test()'
