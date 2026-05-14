@@ -35,27 +35,28 @@ jobs:
 
       - uses: julia-actions/cache@e33b4bfa0ea7cd9caedd7cb82b0e36956ef40285 # v2
 
-      - name: Install hyperpolymath Julia registry
-        shell: bash
+      - name: Install hyperpolymath-internal Julia deps from git
+        # The deps Cliodynamics, Causals, ZeroProb are hyperpolymath
+        # org-internal packages and are NOT in any Julia registry — the
+        # `registries/General` subdir of hyperpolymath/julia-ecosystem is
+        # just a mirror of upstream JuliaRegistries/General and doesn't
+        # contain them. Install each from its git URL before
+        # Pkg.instantiate() picks them up.
         run: |
-          # The hyperpolymath General registry lives at registries/General/
-          # inside hyperpolymath/julia-ecosystem (a meta-repo), so Julia
-          # Pkg can't add it via a plain URL. Clone the meta-repo, init
-          # the subdir as its own git repo, then register it via path.
-          git clone --depth=1 https://github.com/hyperpolymath/julia-ecosystem.git /tmp/julia-ecosystem
-          cd /tmp/julia-ecosystem/registries/General
-          git init -q
-          git add -A
-          git -c user.email=ci@local -c user.name=ci commit -q -m snapshot
-          julia -e '
+          julia --project=. -e '
             using Pkg
-            # Ensure upstream General is present (cache may be cold).
-            try Pkg.Registry.add("General") catch end
-            # Install hyperpolymath General via local path. Julia 1.11
-            # accepts a path containing Registry.toml; treats it as a
-            # bare-clone-style registry source.
-            Pkg.Registry.add(Pkg.RegistrySpec(path="/tmp/julia-ecosystem/registries/General"))
-            Pkg.Registry.status()
+            for (name, url) in [
+              ("Cliodynamics", "https://github.com/hyperpolymath/Cliodynamics.jl"),
+              ("Causals",      "https://github.com/hyperpolymath/Causals.jl"),
+              ("ZeroProb",     "https://github.com/hyperpolymath/ZeroProb.jl"),
+            ]
+              try
+                Pkg.add(Pkg.PackageSpec(url=url))
+              catch e
+                @warn "Failed to add $name from $url" exception=(e, catch_backtrace())
+                rethrow(e)
+              end
+            end
           '
 
       - name: Install, build, test
