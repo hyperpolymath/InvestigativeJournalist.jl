@@ -3,5 +3,4 @@
 
 # Security-sensitive files require explicit review
 SECURITY.md @hyperpolymath
-.github/workflows/ @hyperpolymath
 .machine_readable/ @hyperpolymath
