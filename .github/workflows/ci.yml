@@ -35,5 +35,27 @@ jobs:
 
       - uses: julia-actions/cache@e33b4bfa0ea7cd9caedd7cb82b0e36956ef40285 # v2
 
+      - name: Install hyperpolymath-internal Julia deps from git
+        # These hyperpolymath org-internal packages are NOT in any Julia
+        # registry — the `registries/General` subdir of
+        # hyperpolymath/julia-ecosystem is just a mirror of upstream
+        # JuliaRegistries/General and doesn't contain them.
+        #
+        # The list is the transitive closure of internal deps from this
+        # project's Project.toml: Cliodynamics, Causals, ZeroProb are
+        # direct; AcceleratorGate is needed because Causals + ZeroProb
+        # depend on it. Install all in a SINGLE Pkg.add call so the
+        # resolver knows about all the git sources at once.
+        run: |
+          julia --project=. -e '
+            using Pkg
+            Pkg.add([
+              Pkg.PackageSpec(url="https://github.com/hyperpolymath/Cliodynamics.jl"),
+              Pkg.PackageSpec(url="https://github.com/hyperpolymath/Causals.jl"),
+              Pkg.PackageSpec(url="https://github.com/hyperpolymath/ZeroProb.jl"),
+              Pkg.PackageSpec(url="https://github.com/hyperpolymath/AcceleratorGate.jl"),
+            ])
+          '
+
       - name: Install, build, test
         run: julia --project=. -e 'using Pkg; Pkg.instantiate(); Pkg.build(); Pkg.test()'
