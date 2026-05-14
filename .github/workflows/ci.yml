@@ -40,23 +40,18 @@ jobs:
         # org-internal packages and are NOT in any Julia registry — the
         # `registries/General` subdir of hyperpolymath/julia-ecosystem is
         # just a mirror of upstream JuliaRegistries/General and doesn't
-        # contain them. Install each from its git URL before
-        # Pkg.instantiate() picks them up.
+        # contain them. Install all three in a SINGLE Pkg.add call so the
+        # resolver knows about all the git sources at once — adding them
+        # one-by-one fails because each Pkg.add sees the other two as
+        # unresolved registry deps and aborts before its own URL is used.
         run: |
           julia --project=. -e '
             using Pkg
-            for (name, url) in [
-              ("Cliodynamics", "https://github.com/hyperpolymath/Cliodynamics.jl"),
-              ("Causals",      "https://github.com/hyperpolymath/Causals.jl"),
-              ("ZeroProb",     "https://github.com/hyperpolymath/ZeroProb.jl"),
-            ]
-              try
-                Pkg.add(Pkg.PackageSpec(url=url))
-              catch e
-                @warn "Failed to add $name from $url" exception=(e, catch_backtrace())
-                rethrow(e)
-              end
-            end
+            Pkg.add([
+              Pkg.PackageSpec(url="https://github.com/hyperpolymath/Cliodynamics.jl"),
+              Pkg.PackageSpec(url="https://github.com/hyperpolymath/Causals.jl"),
+              Pkg.PackageSpec(url="https://github.com/hyperpolymath/ZeroProb.jl"),
+            ])
           '
 
       - name: Install, build, test
