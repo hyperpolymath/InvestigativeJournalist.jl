@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
 # Default owner for everything
-* @hyperpolymath
 
 # Security-sensitive files require explicit review
 SECURITY.md @hyperpolymath
