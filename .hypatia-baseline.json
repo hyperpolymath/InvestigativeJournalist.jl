@@ -1,0 +1,68 @@
+[
+  {
+    "severity": "critical",
+    "rule_module": "security_errors",
+    "type": "secret_detected",
+    "file": ".envrc"
+  },
+  {
+    "severity": "critical",
+    "rule_module": "workflow_audit",
+    "type": "actions_expression_injection",
+    "file": "boj-build.yml"
+  },
+  {
+    "severity": "critical",
+    "rule_module": "workflow_audit",
+    "type": "actions_expression_injection",
+    "file": "hypatia-scan.yml"
+  },
+  {
+    "severity": "critical",
+    "rule_module": "workflow_audit",
+    "type": "actions_expression_injection",
+    "file": "mirror.yml"
+  },
+  {
+    "severity": "critical",
+    "rule_module": "workflow_audit",
+    "type": "actions_expression_injection",
+    "file": "quality.yml"
+  },
+  {
+    "severity": "high",
+    "rule_module": "cicd_rules",
+    "type": "missing_requirement",
+    "file": ".github/workflows/scorecard.yml"
+  },
+  {
+    "severity": "high",
+    "rule_module": "cicd_rules",
+    "type": "missing_requirement",
+    "file": "permissions: read-all"
+  },
+  {
+    "severity": "high",
+    "rule_module": "git_state",
+    "type": "GS005",
+    "file": "."
+  },
+  {
+    "severity": "high",
+    "rule_module": "workflow_audit",
+    "type": "download_then_run",
+    "file": "mirror.yml"
+  },
+  {
+    "severity": "high",
+    "rule_module": "workflow_audit",
+    "type": "unsafe_curl_payload",
+    "file": "boj-build.yml"
+  },
+  {
+    "severity": "high",
+    "rule_module": "workflow_audit",
+    "type": "unsafe_curl_payload",
+    "file": "hypatia-scan.yml"
+  }
+]
