@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-License-Identifier: MPL-2.0
 = Burble Accessibility
 :toc: auto
 :icons: font
@@ -254,4 +254,4 @@ We welcome contributions to improve accessibility. See our link:../CONTRIBUTING.
 
 == License
 
-This document is licensed under PMPL-1.0-or-later. See link:../../LICENSE[LICENSE] for details.
+This document is licensed under MPL-2.0. See link:../../LICENSE[LICENSE] for details.

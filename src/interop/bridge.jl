@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 module InteropBridge
 
 export run_r_script, export_to_stata, export_to_spss

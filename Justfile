@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # Copyright (c) {{CURRENT_YEAR}} {{AUTHOR}} (hyperpolymath) <{{AUTHOR_EMAIL}}>
 #
 # RSR Standard Justfile Template
@@ -177,7 +177,7 @@ init:
         -e "s|${LB}DATE${RB}|${CURRENT_DATE}|g"
         -e "s|${LB}SECURITY_EMAIL${RB}|${SECURITY_EMAIL}|g"
         -e "s|${LB}CONDUCT_EMAIL${RB}|${CONDUCT_EMAIL}|g"
-        -e "s|${LB}LICENSE${RB}|PMPL-1.0-or-later|g"
+        -e "s|${LB}LICENSE${RB}|MPL-2.0|g"
         -e "s|${LB}CONDUCT_TEAM${RB}|Code of Conduct Committee|g"
         -e "s|${LB}RESPONSE_TIME${RB}|48 hours|g"
         -e "s|${LB}MAIN_BRANCH${RB}|main|g"
@@ -191,7 +191,7 @@ init:
     # Replace in all text files (skip .git, LICENSE text, and binaries)
     find . -type f \
         -not -path './.git/*' \
-        -not -name 'PMPL-1.0-or-later.txt' \
+        -not -name 'MPL-2.0.txt' \
         -not -name '*.png' -not -name '*.jpg' -not -name '*.gif' \
         -not -name '*.woff' -not -name '*.woff2' \
         | while read -r file; do
@@ -729,7 +729,7 @@ tour:
     echo "  Investigativejournalist.Jl — Guided Tour"
     echo "═══════════════════════════════════════════════════"
     echo ""
-    echo '// SPDX-License-Identifier: PMPL-1.0-or-later'
+    echo '// SPDX-License-Identifier: MPL-2.0'
     echo ""
     echo "Key directories:"
     echo "  src/                      Source code" 
