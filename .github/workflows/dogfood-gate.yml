@@ -22,6 +22,7 @@ jobs:
   a2ml-validate:
     name: Validate A2ML manifests
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -66,6 +67,7 @@ jobs:
   k9-validate:
     name: Validate K9 contracts
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -115,6 +117,7 @@ jobs:
   empty-lint:
     name: Empty-linter (invisible characters)
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -179,6 +182,7 @@ jobs:
   groove-check:
     name: Groove manifest check
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -237,6 +241,7 @@ jobs:
   eclexiaiser-validate:
     name: Validate eclexiaiser manifest
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -300,6 +305,7 @@ print(f'Valid: {project[\"name\"]} ({len(functions)} function(s))')
   dogfood-summary:
     name: Dogfooding compliance summary
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     needs: [a2ml-validate, k9-validate, empty-lint, groove-check, eclexiaiser-validate]
     if: always()
 
