@@ -18,6 +18,7 @@ jobs:
   build:
     name: Build Artifacts
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: read
     steps:
@@ -42,6 +43,7 @@ jobs:
   changelog:
     name: Generate Changelog
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: read
     outputs:
@@ -88,6 +90,7 @@ jobs:
     name: Create GitHub Release
     needs: [build, changelog]
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: write
     steps:
