@@ -3,7 +3,7 @@
 # https://securitytxt.org/
 
 Contact: mailto:{{SECURITY_EMAIL}}
-Expires: {{CURRENT_YEAR}}-12-31T23:59:59.000Z
+Expires: 2026-12-31T23:59:59.000Z
 Encryption: {{PGP_KEY_URL}}
 Preferred-Languages: en
 Canonical: https://github.com/hyperpolymath/InvestigativeJournalist.jl/.well-known/security.txt

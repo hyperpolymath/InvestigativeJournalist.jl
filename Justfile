@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MPL-2.0
-# Copyright (c) {{CURRENT_YEAR}} {{AUTHOR}} (hyperpolymath) <{{AUTHOR_EMAIL}}>
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 #
 # RSR Standard Justfile Template
 # https://just.systems/man/en/
@@ -18,7 +18,7 @@ set positional-arguments := true
 import? "contractile.just"
 
 # Project metadata — customize these
-project := "{{PROJECT_NAME}}"
+project := "Overview"
 version := "0.1.0"
 tier := "infrastructure"  # 1 | 2 | infrastructure
 
