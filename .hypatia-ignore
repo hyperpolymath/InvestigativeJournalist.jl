@@ -1,0 +1,25 @@
+# Banned-language exemption ledger — hypatia / governance-reusable.yml
+#
+# Format: <rule_module>/<rule_type>:<path>
+#
+# WHY THIS FILE EXISTS
+# --------------------
+# The governance "Language / package anti-pattern policy" gate is correct:
+# these files really are in languages estate policy bans. The gate's own
+# failure message names this file as the sanctioned way to declare an
+# intentional exception.
+#
+# These exemptions HOLD THE LINE WHILE MIGRATION IS IN PROGRESS. Each entry
+# is removed as the matching file is ported or deleted. This follows the
+# precedent set in hyperpolymath/echidna.
+#
+# EVERY PATH IS LISTED INDIVIDUALLY — deliberately. A `src/**` wildcard would
+# silently absorb NEW banned files added later, turning a migration ledger into
+# a permanent blind spot. Listing each path means a newly added file still
+# fails the gate: this ledger can only shrink as work is done, never quietly
+# grow.
+#
+# Inventory taken 2026-08-06 across all 424 estate repositories.
+# Files covered: 1 rescript
+
+cicd_rules/banned_language_file:examples/SafeDOMExample.res
