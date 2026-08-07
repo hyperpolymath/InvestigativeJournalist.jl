@@ -64,5 +64,59 @@
     "rule_module": "workflow_audit",
     "type": "unsafe_curl_payload",
     "file": "hypatia-scan.yml"
+  },
+  {
+    "severity": "high",
+    "rule_module": "structural_drift",
+    "type": "SD014",
+    "file": "examples/SafeDOMExample.res"
+  },
+  {
+    "severity": "medium",
+    "rule_module": "structural_drift",
+    "type": "SD022",
+    "file": ".github/copilot-instructions.md"
+  },
+  {
+    "severity": "medium",
+    "rule_module": "structural_drift",
+    "type": "SD022",
+    "file": ".github/pull_request_template.md"
+  },
+  {
+    "severity": "medium",
+    "rule_module": "structural_drift",
+    "type": "SD022",
+    "file": "ABI-FFI-README.md"
+  },
+  {
+    "severity": "medium",
+    "rule_module": "structural_drift",
+    "type": "SD022",
+    "file": "PLACEHOLDERS.md"
+  },
+  {
+    "severity": "medium",
+    "rule_module": "structural_drift",
+    "type": "SD022",
+    "file": "RSR_OUTLINE.adoc"
+  },
+  {
+    "severity": "medium",
+    "rule_module": "structural_drift",
+    "type": "SD022",
+    "file": "docs/AI-CONVENTIONS.md"
+  },
+  {
+    "severity": "medium",
+    "rule_module": "workflow_audit",
+    "type": "missing_timeout_minutes",
+    "file": "push-email-notify.yml"
+  },
+  {
+    "severity": "high",
+    "rule_module": "workflow_audit",
+    "type": "secret_action_without_presence_gate",
+    "file": "instant-sync.yml"
   }
 ]
